@@ -12,15 +12,15 @@ let tweetnovo = []
 
 // -------metodo GET--------------------------------
 server.get('/tweets', function(req, res) {
-   const fil = tweets.reverse();
-  const filnovo = fil.filter((item,index )=> {
-    if (index < 3 ){
-      return item
-    }
-  })  
+  if(tweets.length<=10){
+    res.send(tweets.reverse());
+  }else {
+    const tweetsReturn = tweets.slice(tweets.length-10, tweets.length);
+    res.send(tweetsReturn.reverse());
+  }
   
 
-  res.send(filnovo.reverse());
+ 
 
 });
 //---------------------------------------------------
